@@ -16,7 +16,7 @@ import {
 import toast from 'react-hot-toast'
 import Navigation from '@/components/Navigation'
 import TemplateSelector from '@/components/TemplateSelector'
-import PaymentProviderLogos from '@/components/PaymentProviderLogos'
+import PaymentLogos from '@/components/PaymentLogos'
 
 
 interface LineItem {
@@ -74,7 +74,6 @@ export default function NewInvoicePage() {
 
   const [isPreviewMode, setIsPreviewMode] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
-  const [showTemplateSelector, setShowTemplateSelector] = useState(false)
   const [autoSaveStatus, setAutoSaveStatus] = useState<'saved' | 'saving' | 'error'>('saved')
 
   function generateInvoiceNumber(): string {
@@ -86,10 +85,6 @@ export default function NewInvoicePage() {
   }
 
   useEffect(() => {
-    calculateTotals()
-  }, [invoiceData.lineItems, invoiceData.taxRate])
-
-  const calculateTotals = () => {
     const subtotal = invoiceData.lineItems.reduce((sum, item) => sum + item.amount, 0)
     const taxAmount = (subtotal * invoiceData.taxRate) / 100
     const total = subtotal + taxAmount
@@ -100,7 +95,9 @@ export default function NewInvoicePage() {
       taxAmount,
       total
     }))
-  }
+  }, [invoiceData.lineItems, invoiceData.taxRate])
+
+
 
   const addLineItem = () => {
     const newItem: LineItem = {
@@ -626,7 +623,7 @@ export default function NewInvoicePage() {
 
                 {/* Payment Logos Showcase */}
                 <div className="border-t pt-6">
-                  <PaymentProviderLogos compact={true} />
+                  <PaymentLogos />
                   <div className="text-center mt-3">
                     <Link 
                       href="/payment-providers" 

@@ -26,10 +26,17 @@ const requiredVars = [
   'NEXT_PUBLIC_SUPABASE_ANON_KEY',
   'SUPABASE_SERVICE_ROLE_KEY',
   'NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY',
-  'STRIPE_SECRET_KEY',
-  'SENDGRID_API_KEY',
-  'SENDGRID_FROM_EMAIL'
+  'STRIPE_SECRET_KEY'
 ];
+
+// Check for email provider (Resend)
+const hasResend = /^RESEND_API_KEY=/m.test(envContent);
+
+if (!hasResend) {
+  console.log('⚠️  Warning: No email provider configured');
+  console.log('   - Add RESEND_API_KEY for Resend');
+  console.log('   - Emails will be logged to console only\n');
+}
 
 const missingVars = requiredVars.filter(varName => {
   const regex = new RegExp(`^${varName}=`, 'm');
@@ -78,7 +85,7 @@ console.log('✅ Environment variables configured');
 console.log('✅ Production build successful');
 console.log('✅ Supabase database set up');
 console.log('✅ Stripe account configured');
-console.log('✅ SendGrid account configured');
+console.log('✅ Email provider configured (Resend)');
 console.log('✅ Domain name purchased (optional)');
 console.log('');
 

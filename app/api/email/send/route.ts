@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sgMail from '@sendgrid/mail';
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+import { EmailService } from '@/lib/emailService';
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,17 +12,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const msg = {
+    const emailService = new EmailService();
+    const result = await emailService.sendEmail({
       to,
-      from: from || process.env.SENDGRID_FROM_EMAIL!,
+      from,
       subject,
-      html,
-      text,
-    };
+      content: text || html,
+      html
+    });
 
-    await sgMail.send(msg);
-
-    return NextResponse.json({ message: 'Email sent successfully' });
+    if (result.success) {
+      return NextResponse.json({ 
+        message: 'Email sent successfully',
+        messageId: result.messageId 
+      });
+    } else {
+      return NextResponse.json(
+        { error: result.error || 'Failed to send email' },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.error('Error sending email:', error);
     return NextResponse.json(

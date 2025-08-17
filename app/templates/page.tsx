@@ -25,13 +25,9 @@ export default function TemplatesPage() {
   const templateManager = TemplateManager.getInstance();
 
   useEffect(() => {
-    loadTemplates();
-  }, []);
-
-  const loadTemplates = () => {
     const allTemplates = templateManager.getAllTemplates();
     setTemplates(allTemplates);
-  };
+  }, [templateManager]);
 
   const filteredTemplates = templates.filter(template => {
     const matchesCategory = selectedCategory === 'all' || template.category === selectedCategory;
@@ -89,7 +85,8 @@ export default function TemplatesPage() {
       });
       
       if (updatedTemplate) {
-        loadTemplates();
+        const allTemplates = templateManager.getAllTemplates();
+        setTemplates(allTemplates);
         setIsCustomizeModalOpen(false);
       }
     }
@@ -118,7 +115,8 @@ export default function TemplatesPage() {
     });
     
     if (newTemplate) {
-      loadTemplates();
+      const allTemplates = templateManager.getAllTemplates();
+      setTemplates(allTemplates);
       setIsCreateModalOpen(false);
     }
   };
@@ -126,7 +124,8 @@ export default function TemplatesPage() {
   const handleDuplicate = (template: InvoiceTemplate) => {
     const duplicated = templateManager.duplicateTemplate(template.id, `${template.name} (Copy)`);
     if (duplicated) {
-      loadTemplates();
+      const allTemplates = templateManager.getAllTemplates();
+      setTemplates(allTemplates);
     }
   };
 
@@ -136,7 +135,8 @@ export default function TemplatesPage() {
     if (confirm(`Are you sure you want to delete "${template.name}"?`)) {
       const deleted = templateManager.deleteTemplate(template.id);
       if (deleted) {
-        loadTemplates();
+        const allTemplates = templateManager.getAllTemplates();
+        setTemplates(allTemplates);
       }
     }
   };
@@ -164,7 +164,8 @@ export default function TemplatesPage() {
           const templateData = JSON.parse(e.target?.result as string);
           const imported = templateManager.importTemplate(templateData);
           if (imported) {
-            loadTemplates();
+            const allTemplates = templateManager.getAllTemplates();
+            setTemplates(allTemplates);
             alert('Template imported successfully!');
           }
         } catch (error) {

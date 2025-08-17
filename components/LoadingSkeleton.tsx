@@ -1,4 +1,4 @@
-import { Skeleton } from 'lucide-react'
+
 
 interface SkeletonProps {
   type?: 'card' | 'list' | 'table' | 'form' | 'dashboard'

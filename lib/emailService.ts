@@ -1,5 +1,5 @@
-// Modern, Multi-Provider Email Service
-// Supports: Resend (recommended), SendGrid, Console logging
+// Modern Email Service
+// Supports: Resend (recommended), Console logging
 
 export interface EmailData {
   to: string
@@ -25,16 +25,12 @@ export interface InvoiceEmailData {
 export class EmailService {
   private fromEmail: string = process.env.EMAIL_FROM || 'noreply@invoicezap.com'
   private fromName: string = 'InvoiceZap'
-  private provider: 'resend' | 'sendgrid' | 'console' = 'console'
+  private provider: 'resend' | 'console' = 'console'
 
   constructor() {
     // Auto-detect which email provider is configured
     if (process.env.RESEND_API_KEY) {
       this.provider = 'resend'
-    } else if (process.env.SENDGRID_API_KEY) {
-      this.provider = 'sendgrid'
-      const sgMail = require('@sendgrid/mail')
-      sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     } else {
       this.provider = 'console'
       console.log('📧 No email provider configured - using console logging')
@@ -46,8 +42,6 @@ export class EmailService {
       switch (this.provider) {
         case 'resend':
           return await this.sendWithResend(emailData)
-        case 'sendgrid':
-          return await this.sendWithSendGrid(emailData)
         case 'console':
         default:
           return await this.sendWithConsole(emailData)
@@ -84,31 +78,7 @@ export class EmailService {
     }
   }
 
-  private async sendWithSendGrid(emailData: EmailData) {
-    try {
-      const sgMail = require('@sendgrid/mail')
-      
-      const msg = {
-        to: emailData.to,
-        from: {
-          email: emailData.from || this.fromEmail,
-          name: this.fromName
-        },
-        subject: emailData.subject,
-        text: emailData.content,
-        html: emailData.html || emailData.content
-      }
 
-      const response = await sgMail.send(msg)
-      
-      return {
-        success: true,
-        messageId: response[0]?.headers['x-message-id'] || `sendgrid_${Date.now()}`
-      }
-    } catch (error) {
-      throw new Error(`SendGrid error: ${error}`)
-    }
-  }
 
   private async sendWithConsole(emailData: EmailData) {
     console.log('\n📧 ===== EMAIL SENT =====')

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 interface PaymentProvider {
   name: string
@@ -68,10 +69,12 @@ export default function AnimatedLogoCarousel({ compact = false }: AnimatedLogoCa
             {duplicatedProviders.map((provider, index) => (
               <div key={index} className="flex-shrink-0 mx-3 text-center group">
                 <div className="bg-white p-2 rounded-lg shadow-sm group-hover:shadow-md transition-all">
-                  <img
+                  <Image
                     src={`/logos/${provider.file}`}
                     alt={provider.name}
-                    className={`w-6 h-6 mx-auto ${provider.color}`}
+                    width={24}
+                    height={24}
+                    className={`mx-auto ${provider.color}`}
                   />
                 </div>
                 <div className="text-xs text-gray-600 mt-1 truncate w-16">{provider.name}</div>
@@ -104,10 +107,12 @@ export default function AnimatedLogoCarousel({ compact = false }: AnimatedLogoCa
               key={index}
               className="flex-shrink-0 mx-4 bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 group min-w-[120px]"
             >
-              <img
+              <Image
                 src={`/logos/${provider.file}`}
                 alt={provider.name}
-                className={`w-8 h-8 mx-auto mb-2 ${provider.color} group-hover:scale-110 transition-transform`}
+                width={32}
+                height={32}
+                className={`mx-auto mb-2 ${provider.color} group-hover:scale-110 transition-transform`}
               />
               <div className="text-sm font-medium text-gray-900">{provider.name}</div>
             </div>

@@ -14,7 +14,7 @@ const logWebhookEvent = (event: Stripe.Event, status: 'received' | 'processed' |
     eventType: event.type,
     timestamp: new Date().toISOString(),
     status,
-    userId: event.data.object.metadata?.userId,
+    userId: (event.data.object as any)?.metadata?.userId,
     ...(error && { error: error.message })
   };
   
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     logWebhookEvent(event, 'received');
   } catch (err) {
     console.error('Webhook signature verification failed:', err);
-    logWebhookEvent({ id: 'unknown', type: 'unknown', data: { object: {} } } as Stripe.Event, 'error', err);
+    logWebhookEvent({ id: 'unknown', type: 'unknown', data: { object: {} } } as any, 'error', err);
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
 

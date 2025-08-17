@@ -62,12 +62,12 @@ async function testEmailService() {
   console.log('✅ Email service test completed!')
   console.log('\n📝 Current Configuration:')
   console.log('- RESEND_API_KEY:', process.env.RESEND_API_KEY ? '✅ Set' : '❌ Not set')
-  console.log('- SENDGRID_API_KEY:', process.env.SENDGRID_API_KEY ? '✅ Set' : '❌ Not set')
+
   console.log('- EMAIL_FROM:', process.env.EMAIL_FROM || 'Using default')
   
-  if (!process.env.RESEND_API_KEY && !process.env.SENDGRID_API_KEY) {
+  if (!process.env.RESEND_API_KEY) {
     console.log('\n💡 No email provider configured - using console logging mode')
-    console.log('   To send real emails, add either RESEND_API_KEY or SENDGRID_API_KEY to your .env.local')
+    console.log('   To send real emails, add RESEND_API_KEY to your .env.local')
   }
 }
 

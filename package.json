@@ -17,7 +17,6 @@
     "deploy": "node deploy-production.js"
   },
   "dependencies": {
-    "@sendgrid/mail": "^8.1.5",
     "@stripe/stripe-js": "^2.1.0",
     "@supabase/supabase-js": "^2.38.0",
     "autoprefixer": "^10.4.16",
