@@ -1,0 +1,62 @@
+{
+  "stripe": {
+    "name": "Stripe",
+    "file": "stripe.svg",
+    "color": "text-blue-600"
+  },
+  "paypal": {
+    "name": "PayPal", 
+    "file": "paypal.svg",
+    "color": "text-blue-700"
+  },
+  "square": {
+    "name": "Square",
+    "file": "square.svg", 
+    "color": "text-gray-800"
+  },
+  "wise": {
+    "name": "Wise",
+    "file": "wise.svg",
+    "color": "text-blue-500"
+  },
+  "venmo": {
+    "name": "Venmo",
+    "file": "venmo.svg",
+    "color": "text-blue-600"
+  },
+  "cashapp": {
+    "name": "Cash App",
+    "file": "cashapp.svg",
+    "color": "text-green-600"
+  },
+  "revolut": {
+    "name": "Revolut",
+    "file": "revolut.svg",
+    "color": "text-blue-600"
+  },
+  "zelle": {
+    "name": "Zelle",
+    "file": "zelle.svg",
+    "color": "text-purple-600"
+  },
+  "bitcoin": {
+    "name": "Bitcoin",
+    "file": "bitcoin.svg",
+    "color": "text-orange-500"
+  },
+  "applepay": {
+    "name": "Apple Pay",
+    "file": "applepay.svg",
+    "color": "text-gray-900"
+  },
+  "googlepay": {
+    "name": "Google Pay",
+    "file": "googlepay.svg",
+    "color": "text-blue-600"
+  },
+  "klarna": {
+    "name": "Klarna",
+    "file": "klarna.svg",
+    "color": "text-pink-500"
+  }
+}

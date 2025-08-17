@@ -1,0 +1,47 @@
+{
+  "name": "invoicezap",
+  "version": "1.0.0",
+  "description": "Freelancer Invoice Generator - Create, send, and track invoices in under 30 seconds",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test:recommendations": "node scripts/test-recommendations.js",
+    "test:status": "node scripts/test-status-management.js",
+    "test:apis": "node scripts/test-apis.js",
+    "test:email": "node scripts/test-email-service.js",
+    "setup:demo": "node scripts/setup-demo-data.js",
+    "deploy:check": "node scripts/deploy-production.js",
+    "deploy": "node deploy-production.js"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.5",
+    "@stripe/stripe-js": "^2.1.0",
+    "@supabase/supabase-js": "^2.38.0",
+    "autoprefixer": "^10.4.16",
+    "clsx": "^2.0.0",
+    "date-fns": "^2.30.0",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
+    "lucide-react": "^0.292.0",
+    "next": "^14.2.31",
+    "postcss": "^8.4.31",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.47.0",
+    "react-hot-toast": "^2.4.1",
+    "resend": "^3.5.0",
+    "stripe": "^14.0.0",
+    "tailwindcss": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.8.0",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0",
+    "eslint": "8.51.0",
+    "eslint-config-next": "14.0.0",
+    "typescript": "5.5.4"
+  }
+}

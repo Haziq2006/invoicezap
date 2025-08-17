@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optimized font loading */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap&display=swap&text=InvoiceZap');
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize paint and layout */
+.transform-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduce layout shift */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .btn-success {
+    @apply bg-success-600 hover:bg-success-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6;
+  }
+  
+  /* Status Colors */
+  .bg-success-100 { @apply bg-green-100; }
+  .bg-success-600 { @apply bg-green-600; }
+  .text-success-600 { @apply text-green-600; }
+  .text-success-800 { @apply text-green-800; }
+  
+  .bg-warning-100 { @apply bg-yellow-100; }
+  .bg-warning-600 { @apply bg-yellow-600; }
+  .text-warning-800 { @apply text-yellow-800; }
+  
+  .bg-danger-100 { @apply bg-red-100; }
+  .bg-danger-600 { @apply bg-red-600; }
+  .text-danger-800 { @apply text-red-800; }
+  
+  .bg-primary-50 { @apply bg-blue-50; }
+  .bg-primary-100 { @apply bg-blue-100; }
+  .bg-primary-300 { @apply bg-blue-300; }
+  .bg-primary-600 { @apply bg-blue-600; }
+  .bg-primary-700 { @apply bg-blue-700; }
+  .text-primary-600 { @apply text-blue-600; }
+  .text-primary-700 { @apply text-blue-700; }
+  
+  /* Gamification Animations */
+  .pulse-animation {
+    animation: subtle-pulse 2s infinite;
+  }
+  
+  .xp-gain {
+    animation: xp-bounce 0.6s ease-out;
+  }
+  
+  .achievement-unlock {
+    animation: achievement-glow 1s ease-out;
+  }
+  
+  .level-up-notification {
+    animation: level-up 0.8s ease-out;
+  }
+}
+
+@keyframes subtle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+@keyframes xp-bounce {
+  0% {
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) translateY(-5px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes achievement-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes level-up {
+  0% {
+    transform: scale(0.5) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Monday.com inspired styles */
+.monday-card-hover {
+  transition: all 0.2s ease;
+}
+
+.monday-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.status-chip {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full transition-all duration-700 ease-out;
+}
+
+/* Gamification Animations */
+@keyframes pulse-animation {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes xp-gain {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-20px) scale(1.2); opacity: 0; }
+}
+
+@keyframes achievement-unlock {
+  0% { transform: scale(0) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+@keyframes level-up {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pulse-animation {
+  animation: pulse-animation 2s infinite;
+}
+
+.xp-gain {
+  animation: xp-gain 1s ease-out forwards;
+}
+
+.achievement-unlock {
+  animation: achievement-unlock 0.6s ease-out;
+}
+
+.level-up {
+  animation: level-up 0.5s ease-in-out;
+}
+
+/* Monday.com Style Hover Effects */
+.monday-card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.monday-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Carousel Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
