@@ -5,6 +5,7 @@ import { ArrowRight, Zap, FileText, Send, CreditCard, BarChart3, CheckCircle, St
 import Link from 'next/link'
 import { toast } from 'react-hot-toast'
 import PaymentLogosAndFAQ from '@/components/PaymentLogos'
+import AnimatedTextTransition from '@/components/AnimatedTextTransition'
 
 export default function HomePage() {
   const [email, setEmail] = useState('')
@@ -90,16 +91,8 @@ export default function HomePage() {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
         
         <div className="relative max-w-6xl mx-auto text-center">
-          {/* Trust Badge */}
-          <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-full px-6 py-3 mb-8 shadow-lg">
-            <Shield className="h-5 w-5 text-green-500" />
-            <span className="text-sm font-medium text-gray-700">Trusted by 50,000+ freelancers</span>
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full border-2 border-white"></div>
-              ))}
-            </div>
-          </div>
+          {/* Animated Trust Badge */}
+          <AnimatedTextTransition />
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
             Create Professional Invoices in
