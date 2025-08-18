@@ -601,5 +601,54 @@ class SupabaseDataService {
 // Export singleton instance
 export const dataService = new SupabaseDataService()
 
+// Clear demo data for new users
+export const clearDemoData = () => {
+  if (typeof window !== 'undefined') {
+    // Clear any existing demo data
+    localStorage.removeItem('invoicezap_invoices')
+    localStorage.removeItem('invoicezap_clients')
+    localStorage.removeItem('invoicezap_demoData')
+    
+    // Keep user profile and auth data
+    // localStorage.removeItem('invoicezap_userProfile') // Keep this for personalization
+    // localStorage.removeItem('invoicezap_user') // Keep this for auth
+  }
+}
+
+// Check if user has real data (not demo data)
+export const hasRealData = () => {
+  if (typeof window !== 'undefined') {
+    const invoices = localStorage.getItem('invoicezap_invoices')
+    const clients = localStorage.getItem('invoicezap_clients')
+    
+    if (invoices) {
+      const invoiceData = JSON.parse(invoices)
+      return invoiceData.length > 0
+    }
+    
+    if (clients) {
+      const clientData = JSON.parse(clients)
+      return clientData.length > 0
+    }
+  }
+  
+  return false
+}
+
+// Initialize fresh dashboard for new users
+export const initializeFreshDashboard = () => {
+  if (typeof window !== 'undefined') {
+    // Clear any demo data
+    clearDemoData()
+    
+    // Set flag to indicate this is a fresh start
+    localStorage.setItem('invoicezap_freshStart', 'true')
+    
+    // Initialize empty arrays for invoices and clients
+    localStorage.setItem('invoicezap_invoices', JSON.stringify([]))
+    localStorage.setItem('invoicezap_clients', JSON.stringify([]))
+  }
+}
+
 // Re-export types from supabase for convenience
 export type { Client, Invoice, InvoiceItem, Profile } from './supabase'

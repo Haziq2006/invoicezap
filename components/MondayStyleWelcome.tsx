@@ -20,6 +20,7 @@ import {
   Globe
 } from 'lucide-react'
 import toast from 'react-hot-toast'
+import { initializeFreshDashboard } from '@/lib/dataService'
 
 interface WelcomeProps {
   onComplete: (profile: UserProfile) => void
@@ -188,7 +189,10 @@ export default function MondayStyleWelcome({ onComplete }: WelcomeProps) {
 
     // Reset user data for new account and set completion flags
     if (typeof window !== 'undefined') {
-      localStorage.clear()
+      // Initialize fresh dashboard for new users
+      initializeFreshDashboard()
+      
+      // Set user profile and onboarding completion
       localStorage.setItem('invoicezap_userProfile', JSON.stringify(completeProfile))
       localStorage.setItem('invoicezap_onboardingComplete', 'true')
       sessionStorage.setItem('justCompletedOnboarding', 'true')

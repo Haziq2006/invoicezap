@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Zap, Eye, EyeOff, CheckCircle } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useAuth } from '@/contexts/AuthContext'
+import { initializeFreshDashboard } from '@/lib/dataService'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -32,10 +33,9 @@ export default function SignupPage() {
         return
       }
       
-      // Clear any existing data for fresh start
+      // Initialize fresh dashboard for new users
       if (typeof window !== 'undefined') {
-        localStorage.clear()
-        sessionStorage.clear()
+        initializeFreshDashboard()
       }
       
       toast.success('Account created successfully! Let\'s set up your workspace.')
